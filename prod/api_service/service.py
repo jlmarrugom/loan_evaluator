@@ -2,7 +2,6 @@ import numpy as np
 import bentoml
 from bentoml.io import NumpyNdarray, JSON
 
-#BENTO_MODEL_TAG = "onnx_model:z3jrnixeno2mxlg6"
 BENTO_MODEL_TAG = "onnx_model:latest"
 runner = bentoml.onnx.get(BENTO_MODEL_TAG).to_runner()
 
