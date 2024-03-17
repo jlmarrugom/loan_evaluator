@@ -1,0 +1,11 @@
+service: "service:loan_service"
+labels:
+  owner: Jose
+  stage: dev
+include:
+  - "*.py"
+python:
+  packages:
+    - numpy
+    - onnx
+    - onnxruntime
