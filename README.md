@@ -37,7 +37,7 @@ If you want to dockerize the service the steps are:
     docker run --rm -p 3000:3000 loan_evaluator:ap5romxeskzchlg6
     ```
 
-4. Post to the active docker with the script using `python3 prod/example_request.py`, or you can post via postman:
+4. Post to the active docker with the script using `python3 prod/example_request.py`, or you can post via postman to the url `http://localhost:3000/classify`:
     ```json
     [[1,2,3,4,1,2,3,4]]
     ```
