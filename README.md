@@ -86,3 +86,18 @@ The model validation is performed in the Training Pipeline, a model file, the cl
 1. Create tests to evaluate codequality and prevent production bugs.
 2. Perform Performance tests to check memory consumption, speed, and scalability depending on the RPMs.
 3. Convert the Methods in the `training.py` file for console inputs of data paths.
+4. (Optional) Add Keys to json dictionary for better explainability:
+   ```python
+      {"prediction":
+        [
+            0  # Prediction  
+        ],
+       "scores":
+        [
+            [  # Prediction Scores
+                0.5001351987524033,
+                0.4998648012475967
+            ]
+        ]
+    }
+    ```
