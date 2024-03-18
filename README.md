@@ -37,7 +37,7 @@ If you want to dockerize the service the steps are:
     docker run --rm -p 3000:3000 loan_evaluator:ap5romxeskzchlg6
     ```
 
-4. Post to the active docker with the script using `python3 prod/example_request.py`, or you can post via postman to the url `http://localhost:3000/classify`:
+4. Post to the active docker with the script using `python3 prod/example_request.py`, or you can post the values of `[Age, Annual_Income, Credit_Score, Loan_Amount, Loan_Duration_Years, Number_of_Open_Accounts, Had_Past_Default]` via postman to the url `http://localhost:3000/classify`:
     ```json
     [[1,2,3,4,1,2,3,4]]
     ```
@@ -83,21 +83,31 @@ The model is a `LogisticRegression` model that is trained and exported to ONNX -
 The model validation is performed in the Training Pipeline, a model file, the classification report and the validation data are saved on the `output/` folder for further evaluation.
 
 ## Next Steps:
+0. Correct a Bug that causes that the model receive 8 values instead of 7, this is caused by incuding the index of the training dataset into the predictions. Should be fixed with `pd.read_csv(..., index_col = 0)`
 1. Create tests to evaluate codequality and prevent production bugs.
 2. Perform Performance tests to check memory consumption, speed, and scalability depending on the RPMs.
 3. Convert the Methods in the `training.py` file for console inputs of data paths.
 4. (Optional) Add Keys to json dictionary for better explainability:
-   ```python
-      {"prediction":
-        [
-            0  # Prediction  
-        ],
-       "scores":
-        [
-            [  # Prediction Scores
-                0.5001351987524033,
-                0.4998648012475967
-            ]
-        ]
+    ```json
+    {
+        "Age": 1,
+        "Annual_Income": 2,
+        "Credit_Score": 3,
+        "Loan_Amount": 4,
+        "Loan_Duration_Years": 5,
+        "Number_of_Open_Accounts": 6,
+        "Had_Past_Default": 7
     }
+    
+    ```
+   
+   ```json
+      {
+       "prediction": 0,
+       "scores":
+           {
+               "0": 0.5001351987524033,
+               "1": 0.4998648012475967
+            }
+       }
     ```
